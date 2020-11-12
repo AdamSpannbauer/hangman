@@ -74,8 +74,11 @@ int main()
             // Letter not in word
             std::cout << "Letter not in word" << std::endl;
             counter += 1;
+            if (counter == 4)
+                std::cout << "You have 1 attempt left" << std::endl;
+            else
+                std::cout << "You have " << maxTries - counter << " attempts left" << std::endl; 
         }
-
         // Check for gameover
         if (censoredSecretWord.find("*") == std::string::npos)
         {
