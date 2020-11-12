@@ -4,7 +4,7 @@
 std::string secretWord = "turbot";
 std::string censoredSecretWord;
 
-int counter = 1;
+int counter = 0;
 int maxTries = 5;
 char guess;
 std::vector<int> foundLocs;
@@ -12,7 +12,9 @@ std::vector<int> foundLocs;
 // [x] Censor word and print out (aka make "dog" -> "_ _ _")
 // [x] Fill in censored word based on correct guesses
 // [x] Loop for guess
-// [ ] Make a losing condition
+// [x] Make a losing condition
+// [ ] Add number of attempts left
+// [ ] Add list of possible secret words
 // [ ] Hang a man
 
 std::string censorSecretWord(std::string sw, char censorChar = '*')
@@ -39,8 +41,6 @@ std::vector<int> findGuessLocs(std::string sw, char g)
 
     return locs;
 }
-}
-
 std::string decensor(std::string censored, char replace, std::vector<int> locs)
 {
     for (int i = 0; i < locs.size(); i += 1)
