@@ -1,7 +1,13 @@
 #include <iostream>
 #include <vector>
+#include <time.h>
 
-std::string secretWord = "turbot";
+//array of possible secret words
+char *possSecretWords[20]{"abyss", "bagpipes", "cycle", "duplex", "equip",
+                          "flopping", "galaxy", "gravel", "jackpot", "jiujitsu",
+                          "ivory", "jumbo", "luxury", "mystify", "nightstick",
+                          "oxygen", "pixel", "rhythm", "strength", "stronghold"};
+std::string secretWord;
 std::string censoredSecretWord;
 
 int counter = 0;
@@ -13,8 +19,8 @@ std::vector<int> foundLocs;
 // [x] Fill in censored word based on correct guesses
 // [x] Loop for guess
 // [x] Make a losing condition
-// [ ] Add number of attempts left
-// [ ] Add list of possible secret words
+// [x] Add number of attempts left
+// [x] Add list of possible secret words
 // [ ] Hang a man
 
 std::string censorSecretWord(std::string sw, char censorChar = '*')
@@ -52,6 +58,9 @@ std::string decensor(std::string censored, char replace, std::vector<int> locs)
 
 int main()
 {
+    srand(time(NULL));
+    int randomIndex = rand() % 20;
+    secretWord = possSecretWords[randomIndex];
     censoredSecretWord = censorSecretWord(secretWord);
 
     while (true)
@@ -77,7 +86,7 @@ int main()
             if (counter == 4)
                 std::cout << "You have 1 attempt left" << std::endl;
             else
-                std::cout << "You have " << maxTries - counter << " attempts left" << std::endl; 
+                std::cout << "You have " << maxTries - counter << " attempts left" << std::endl;
         }
         // Check for gameover
         if (censoredSecretWord.find("*") == std::string::npos)
@@ -88,6 +97,7 @@ int main()
         else if (counter >= maxTries)
         {
             std::cout << "You lose!" << std::endl;
+            std::cout << "The word was: " << secretWord << std::endl;
             break;
         }
         std::cout << std::endl;
