@@ -11,7 +11,7 @@ std::string secretWord;
 std::string censoredSecretWord;
 
 int counter = 0;
-int maxTries = 5;
+int maxTries = 7;
 char guess;
 std::vector<int> foundLocs;
 
@@ -83,7 +83,7 @@ int main()
             // Letter not in word
             std::cout << "Letter not in word" << std::endl;
             counter += 1;
-            if (counter == 4)
+            if (counter == (maxTries - 1))
                 std::cout << "You have 1 attempt left" << std::endl;
             else
                 std::cout << "You have " << maxTries - counter << " attempts left" << std::endl;
